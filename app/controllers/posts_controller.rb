@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update]
   def index
-    @posts = Post.all.includes(:comments, :creator, :categories)
+    @posts = Post.all.includes(:comments, :creator, :categories).order(id: :desc)
   end
 
   def show
@@ -13,9 +13,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.creator = User.all.shuffle.pop # TODO: Change once we have login system
 
     if @post.save
-      flash[:success] = "Post created!"
+      flash['notice'] = "Post created!" 
       redirect_to post_path(@post)
     else
       render :new
