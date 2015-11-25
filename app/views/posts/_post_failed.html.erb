@@ -1,6 +1,6 @@
 <% if @post.errors.any? %>
     <div class="alert alert-danger">
-      <h5>You cannot create the post because:</h5>
+      <h5><%= msg %></h5>
       <ul>
         <% @post.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
