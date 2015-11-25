@@ -1,3 +1,4 @@
+
 <%= render @post.categories %>
 <%= render 'shared/head_content', title: @post.title %>
 
@@ -10,8 +11,9 @@
   <% @post.comments.each do |comment| %>
     <blockquote>
       <p><%= comment.body %></p>
-      <footer>By <%= comment.creator.username %> at <%= comment.created_at %></footer>
+      <footer>
+        By <%= comment.creator.username %> at <%= comment.created_at %>
+      </footer>
     </blockquote>
-
   <% end %>
 </div>
