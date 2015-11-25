@@ -1,3 +1,6 @@
+<p class="pull-right">
+  [<%= link_to "Edit the post", edit_post_path(@post) %>]
+</p>
 
 <%= render @post.categories %>
 <%= render 'shared/head_content', title: @post.title %>
