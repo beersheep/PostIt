@@ -1,0 +1,19 @@
+
+<% if @category.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= "You cannot create the category:" %></h5>
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<%= form_for @category do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Category Name" %>
+    <%= f.text_field :name %>
+  </div>
+    <%= f.submit "Create category", class: "btn btn-default" %>
+<% end %>
