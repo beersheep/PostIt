@@ -13,10 +13,11 @@
     msg: "You cannot create the comment because:" %>
 
 <%= form_for [@post, @comment] do |f| %>
-  <%= f.label :body %>
-  <%= f.text_field :body %>
-  </br>
-  <%= f.submit "Send Comment" %>
+  <div class="form-group">
+  <%= f.label :body, 'Leave a comment' %>
+  <%= f.text_area :body, rows: 3%>
+  </div>
+  <%= f.submit "Send Comment", class: "btn btn-default" %>
 <% end %>
 
 

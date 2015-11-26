@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    binding.pry
     @post = Post.new(post_params)
     @post.creator = User.all.shuffle.pop # TODO: Change once we have login system
 
@@ -45,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :description)
+    params.require(:post).permit(:title, :url, :description, :category_ids => [])
   end
 
 end
