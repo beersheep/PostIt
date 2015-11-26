@@ -1,14 +1,8 @@
 
-<% if @category.errors.any? %>
-    <div class="alert alert-danger">
-      <h5><%= "You cannot create the category:" %></h5>
-      <ul>
-        <% @category.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
+
+<%= render 'shared/errors', 
+    obj: @category,  
+    msg: "You cannot create the category:" %>
 
 <%= form_for @category do |f| %>
   <div class="form-group">

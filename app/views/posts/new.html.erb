@@ -1,6 +1,7 @@
 <%= render 'shared/head_content', title: "New Post" %>
 
-<%= render 'post_failed', msg: "You cannot create the post because:" %>
-
+<%= render 'shared/errors', 
+    obj: @post,  
+    msg: "You cannot create the post because:" %>
 
 <%= render 'post_form', action: "Create Post" %>
