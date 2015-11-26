@@ -1,0 +1,5 @@
+<% post_link = link_to "All Post", posts_path %>
+
+<%= render 'shared/head_content', title: "#{post_link} &raquo; #{@category.name}".html_safe %>
+
+<%= render @category.posts %>
