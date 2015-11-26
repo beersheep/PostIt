@@ -8,15 +8,20 @@
 <h4><%= @post.description %></h4>
 <hr/>
 
+<%= render 'shared/errors',
+    obj: @comment,
+    msg: "You cannot create the comment because:" %>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  </br>
+  <%= f.submit "Send Comment" %>
+<% end %>
+
+
 <h3><%= has_comments? %></h3>
 
 <div class="row"> 
-  <% @post.comments.each do |comment| %>
-    <blockquote>
-      <p><%= comment.body %></p>
-      <footer>
-        By <%= comment.creator.username %> at <%= comment.created_at %>
-      </footer>
-    </blockquote>
-  <% end %>
+  <%= render @post.comments %>
 </div>
