@@ -21,7 +21,7 @@
 <% end %>
 
 
-<h3><%= has_comments? %></h3>
+<h3><%= has_comments?(@post) %></h3>
 
 <div class="row"> 
   <%= render @post.comments %>
