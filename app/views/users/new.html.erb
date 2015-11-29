@@ -1,0 +1,20 @@
+<%= render '/shared/head_content', title: "Register" %>
+
+<%= render '/shared/errors', obj: @user, msg: "Register failed because" %>
+
+
+<%= form_tag '/users/' do %>
+  <div class="form-group">
+    <%= label_tag 'username' %>
+    <%= text_field_tag 'user[username]' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'password' %>
+    <%= password_field_tag 'user[password]' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'password_confirmation' %>
+    <%= password_field_tag 'user[password_confirmation]', nil, placeholder:"Confirm your password" %>
+  </div>
+    <%= submit_tag 'Register', class: 'btn btn-success' %>
+<% end %>
