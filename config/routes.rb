@@ -6,5 +6,5 @@ PostitTemplate::Application.routes.draw do
   end
 
   resources :categories, only: [:new, :create, :show]
-
+ 
 end

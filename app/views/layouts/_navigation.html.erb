@@ -5,13 +5,10 @@
   <li>
     <%= link_to 'link', '' %>
   </li>
-</ul>
-
-
-<div class="nav-item pull-left">
-  <%= link_to "New Post", new_post_path, :class => 'btn btn-success' %>
-</div>
-
+  <li>
+  <%= link_to "New Post", new_post_path, :class => 'btn-success navbar-btn' %>
+  </li>
+  <li>
 <div class="btn-group nav-item">
   <%= link_to "#", class: "btn btn-default dropdown-toggle", "data-toggle" => "dropdown" do %> 
     Categories <span class="caret"></span>
@@ -30,3 +27,5 @@
     </li>
   </ul>
 </div>
+</li>
+</ul>
