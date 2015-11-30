@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
+  before_action :require_user
+
   def create
-    # binding.pry
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(params.require(:comment).permit!)
     
     random_user = User.all.shuffle.pop  
-    @comment.creator = random_user # TODO: Change this after we have a login system
+    @comment.creator = current_user
 
     if @comment.save 
       flash["notice"] = "Comment created!"

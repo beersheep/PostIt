@@ -1,6 +1,8 @@
-<p class="pull-right">
-  [<%= link_to "Edit the post", edit_post_path(@post) %>]
-</p>
+<% if logged_in? %>
+  <p class="pull-right">
+    [<%= link_to "Edit the post", edit_post_path(@post) %>]
+  </p>
+<% end %>
 
 <%= render @post.categories %>
 <%= render 'shared/head_content', title: @post.title %>
@@ -12,12 +14,14 @@
     obj: @comment,
     msg: "You cannot create the comment because:" %>
 
-<%= form_for [@post, @comment] do |f| %>
-  <div class="form-group">
-  <%= f.label :body, 'Leave a comment' %>
-  <%= f.text_area :body, rows: 3%>
-  </div>
-  <%= f.submit "Send Comment", class: "btn btn-default" %>
+<% if logged_in? %>
+  <%= form_for [@post, @comment] do |f| %>
+    <div class="form-group">
+    <%= f.label :body, 'Leave a comment' %>
+    <%= f.text_area :body, rows: 3%>
+    </div>
+    <%= f.submit "Send Comment", class: "btn btn-default" %>
+  <% end %>
 <% end %>
 
 
