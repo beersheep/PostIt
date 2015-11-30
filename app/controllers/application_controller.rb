@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   def require_user
     if !current_user
       flash['notice'] = "Please login."
+      session[:page_before_redirected] = request.url
       redirect_to login_path
     end
   end

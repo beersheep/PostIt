@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash['notice'] = "You are logged in now!"
-      redirect_to root_path
+      redirect_to_previous_or_root
     else
       flash['error'] = "Your username or password is wrong"
       render :new
@@ -22,4 +22,12 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+
+  def redirect_to_previous_or_root
+    if session[:page_before_redirected] 
+      redirect_to session[:page_before_redirected] 
+    else 
+      redirect_to root_path
+    end
+  end
 end
