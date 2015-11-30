@@ -18,11 +18,8 @@
   </li>
   <% end %>
  
-  <li>
-  <%= link_to "New Post", new_post_path, :class => 'btn-success navbar-btn' %>
-  </li>
-<div class="btn-group nav-item">
-  <%= link_to "#", class: "btn btn-default dropdown-toggle", "data-toggle" => "dropdown" do %> 
+<div class="btn-group nav_item">
+  <%= link_to "#", class: "btn dropdown-toggle", "data-toggle" => "dropdown" do %> 
     Categories <span class="caret"></span>
   <% end %>
   <ul class="dropdown-menu">
@@ -39,6 +36,7 @@
     </li>
   </ul>
 </div>
-</nav>
-<li class="pull-right"> <%= "Hi" + current_user.username if logged_in? %></li>
-</nav>
+
+<div class="nav_item">
+   <%= link_to "New Post", new_post_path, class: 'btn-success btn'%>
+</div>
