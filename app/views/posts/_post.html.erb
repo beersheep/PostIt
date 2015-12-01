@@ -1,12 +1,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <%= link_to votes_path(vote: true, type: 'Post', id:post.id),  method: 'post' do %>
-        <%= fa_icon('chevron-up') %>
+      <%= link_to votes_path(vote: true, type: 'Post', id:post.id),  method: 'post', class: 'vote_link' do %>
+        <%= fa_icon('chevron-up', class: vote_true(post) ? 'voted' : 'vote_buttons') %>
       <% end %>
       <br/>
-      <%= link_to votes_path(vote: false, type: 'Post', id:post.id),  method: 'post' do %>
-        <%= fa_icon('chevron-down') %>
+        <%= post.total_votes %>
+      <br/>
+      <%= link_to votes_path(vote: false, type: 'Post', id:post.id),  method: 'post', class: 'vote_link' do %>
+        <%= fa_icon('chevron-down', class: vote_false(post) ? 'voted' : 'vote_buttons') %>
       <% end %>
     </div>
 
