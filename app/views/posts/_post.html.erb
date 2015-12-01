@@ -1,13 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <%= link_to votes_path(vote: true, type: 'Post', id:post.id),  method: 'post' do %>
+        <%= fa_icon('chevron-up') %>
+      <% end %>
+      <br/>
+      <%= link_to votes_path(vote: false, type: 'Post', id:post.id),  method: 'post' do %>
+        <%= fa_icon('chevron-down') %>
+      <% end %>
+    </div>
 
-<div class="well">
-<%= render post.categories %>
-  <h4><%= link_to post.title, fix_url(post.url) %></h4>    
-   <p><%= post.description %></p>
-    <p>
-      <span class="quiet">Posted by <%= post.creator.username %> </span>
-      <small> at <%= post.created_at %></small>
-    </p>
-  <small>
-    <span><%= link_to "#{post.comments.size} comments", post_path(post) %></span>
-  </small>
+    <div class="well col-md-8">
+    <%= render post.categories %>
+      <h4><%= link_to post.title, fix_url(post.url) %></h4>    
+       <p><%= post.description %></p>
+        <p>
+          <span class="quiet">Posted by <%= post.creator.username %> </span>
+          <small> at <%= post.created_at %></small>
+        </p>
+      <small>
+        <span><%= link_to "#{post.comments.size} comments", post_path(post) %></span>
+      </small>
+    </div>
+  </div>
 </div>
