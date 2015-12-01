@@ -26,6 +26,7 @@ class SessionsController < ApplicationController
   def redirect_to_previous_or_root
     if session[:page_before_redirected] 
       redirect_to session[:page_before_redirected] 
+      session[:page_before_redirected] = nil
     else 
       redirect_to root_path
     end

@@ -1,6 +1,19 @@
+
+
+<%= link_to votes_path(vote: true, type: 'Comment', id:comment.id), class: 'vote_link',  method: 'post' do %>
+  <%= fa_icon('chevron-up', class: vote_true(comment) ? 'voted' : 'vote_buttons') %>
+<% end %>
+  <br/>
+    <%= comment.total_votes %>
+  <br/>
+<%= link_to votes_path(vote: false, type: 'Comment', id:comment.id), class: 'vote_link', method: 'post' do %>
+  <%= fa_icon('chevron-down', class: vote_false(comment) ? 'voted' : 'vote_buttons') %>
+<% end %>
+
  <blockquote>
   <p><%= comment.body %></p>
   <footer>
     By <%= comment.creator.username %> at <%= comment.created_at %>
   </footer>
 </blockquote>
+

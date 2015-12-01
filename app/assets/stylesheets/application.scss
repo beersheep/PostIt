@@ -10,10 +10,12 @@
  *
  *= require_self
  *= require_tree .
+ *= require font-awesome
  */
 
  @import "bootstrap";
-
+ @import "font-awesome";
+ 
  .container {
   margin-left: 135px
 }
@@ -45,4 +47,18 @@ div.comment_votes {
 blockquote footer {
   color: #aaa;
 }
+a, a:hover, a:focus {
+  .vote_buttons {
+      color: black;
+  }
+}
 
+.vote_link:hover {
+  color:black;
+  text-decoration: none;
+}
+
+.voted {
+  color: #009933;
+  text-decoration: none;
+}
