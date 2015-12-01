@@ -8,5 +8,17 @@ module ApplicationHelper
     obj.votes.where(vote: false, user_id: current_user).any?
   end
 
+  def total_votes(obj)
+    up_votes(obj) - down_votes(obj)
+  end
+
+  def up_votes(obj)
+    obj.votes.where(vote: true).size
+  end
+
+  def down_votes(obj)
+    obj.votes.where(vote: false).size
+  end
+
 
 end

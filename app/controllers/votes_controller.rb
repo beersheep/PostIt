@@ -7,7 +7,7 @@ class VotesController < ApplicationController
 
       @vote.vote.to_s == params[:vote] ? self.destroy : self.change_vote
     else
-
+      
       @vote = Vote.create(vote: params[:vote], voteable_type: params[:type], voteable_id: params[:id], user: current_user)
       if @vote.valid?
         flash['notice'] = "Vote completed!" 
