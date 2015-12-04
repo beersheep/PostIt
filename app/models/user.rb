@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
 
-  validates :password, confirmation: true, presence:true, length: {minimum: 6}
+  validates :password, confirmation: true, presence:true, length: {minimum: 6}, on: :create
   validates :username, length: {minimum: 3}, presence:true, uniqueness: true
 
 
