@@ -1,4 +1,4 @@
-<div class="well span">
+<div class="well span0 text-center">
   <%= link_to votes_path(vote: true, type: 'Post', id:post.id),  method: 'post', class: 'vote_link' do %>
     <%= fa_icon('chevron-up', class: vote_true(post) ? 'voted' : 'vote_buttons') %>
   <% end %>

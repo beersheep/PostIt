@@ -1,12 +1,12 @@
 <%= render 'shared/head_content', title: "#{@user.username}'s Activities" %>
 
 <ul class="nav nav-tabs">
-  <li>
+  <li class=<%= "active" if params[:active].nil? %> >
     <%= link_to user_path(@user) do %>
       <i class="fa fa-clone"></i> Posts <%= "(#{@user.posts.size})" %>
     <% end %>
   </li>
-  <li>
+  <li class=<%= "active" if params[:active] %> >
     <%= link_to user_path(@user, active: true) do %>
     <i class="fa fa-comment-o"></i> Comments <%= "(#{@user.comments.size})" %>
     <% end %>

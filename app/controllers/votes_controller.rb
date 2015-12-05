@@ -11,10 +11,10 @@ class VotesController < ApplicationController
       @vote = Vote.create(vote: params[:vote], voteable_type: params[:type], voteable_id: params[:id], user: current_user)
       if @vote.valid?
         flash['notice'] = "Vote completed!" 
-        redirect_to_comments_or_index
+        redirect_to :back
       else
         flash['error'] = "Vote failed! Please try again"
-        redirect_to_comments_or_index
+        redirect_to :back
       end
     end
   end
@@ -24,17 +24,17 @@ class VotesController < ApplicationController
 
     if @vote.update(vote: params[:vote])
       flash[:success] = "change your vote"
-      redirect_to_comments_or_index
+      redirect_to :back
     else 
       flash['error'] = "Vote failed! Please try again"
-      redirect_to_comments_or_index
+      redirect_to :back
     end
   end
 
   def destroy 
     @vote.destroy
     flash[:success] = "vote uncount"
-    redirect_to_comments_or_index
+    redirect_to :back
   end
 
   def has_voted? 
@@ -42,16 +42,6 @@ class VotesController < ApplicationController
   end
 
   private
-
-  def redirect_to_comments_or_index
-    if params[:type] == "Post"
-      redirect_to root_path
-    else 
-      @post = Comment.find(params[:id]).post
-      redirect_to post_path(@post)
-    end
-  end
-
 
   def find_vote
     @vote = Vote.find_by(voteable_type: params[:type], voteable_id: params[:id], user: current_user)

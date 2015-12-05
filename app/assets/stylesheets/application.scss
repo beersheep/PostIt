@@ -40,6 +40,12 @@ div.nav_item {
   }
 }
 
+li {
+  a, a:hover, a:focus{
+    color: #000;
+  }
+}
+
 div.comment_votes {
   padding: 10px;
 }
