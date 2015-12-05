@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(params.require(:user).permit(:username, :password, :password_confirmation))
 
     if @user.save
+      session[:user_id] = @user.id
       flash['notice'] = "You have successfully registered!"
       redirect_to root_path
     else

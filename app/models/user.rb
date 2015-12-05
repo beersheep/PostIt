@@ -8,9 +8,4 @@ class User < ActiveRecord::Base
 
   has_secure_password validations: false
 
-  def update_user
-    if !self.new_record?
-    end
-  end
-
 end

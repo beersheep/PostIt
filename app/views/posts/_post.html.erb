@@ -1,16 +1,16 @@
 <% if logged_in? %>
   <div class="well span0 text-center">
-    <%= link_to votes_path(vote: true, type: 'Post', id:post.id),  method: 'post', class: 'vote_link' do %>
+    <%= link_to votes_path(vote: true, type: 'Post', id:post.id), method: 'post', class: 'vote_link' do %>
       <%= fa_icon('chevron-up', class: vote_true(post) ? 'voted' : 'vote_buttons') %>
     <% end %>
-      <h4><%= total_votes(post) %></h4>
-    <%= link_to votes_path(vote: false, type: 'Post', id:post.id),  method: 'post', class: 'vote_link' do %>
+      <h4 id="vote-count"><%= total_votes(post) %></h4>
+    <%= link_to votes_path(vote: false, type: 'Post', id:post.id), method: 'post', class: 'vote_link' do %>
       <%= fa_icon('chevron-down', class: vote_false(post) ? 'voted' : 'vote_buttons') %>
     <% end %>
   </div>
 <% else %>
   <div class="well span0 text-center">
-    <h4><%= total_votes(post) %></h4>
+    <h4 class="vote-count"><%= total_votes(post) %></h4>
   </div>
 <%end %>
 
@@ -26,3 +26,4 @@
     <span><%= link_to "#{post.comments.size} comments", post_path(post) %></span>
   </small>
 </div>
+
