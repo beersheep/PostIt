@@ -1,22 +1,33 @@
 <% indicate_post ||= false %>
 
-<%= link_to votes_path(vote: true, type: 'Comment', id:comment.id), class: 'vote_link',  method: 'post' do %>
-  <%= fa_icon('chevron-up', class: vote_true(comment) ? 'voted' : 'vote_buttons') %>
-<% end %>
-  <br/>
-    <%= total_votes(comment) %>
-  <br/>
-<%= link_to votes_path(vote: false, type: 'Comment', id:comment.id), class: 'vote_link', method: 'post' do %>
-  <%= fa_icon('chevron-down', class: vote_false(comment) ? 'voted' : 'vote_buttons') %>
-<% end %>
-
- <blockquote>
-  <% if indicate_post == true %>
-    <h4>Commented on <%= link_to "#{comment.post.title}", post_path(comment.post)%></h3>
+<div class="row">
+  <% if logged_in? %>
+    <div class="span0 text-center">
+      <%= link_to votes_path(vote: true, type: 'Comment', id:comment.id), class: 'vote_link',  method: 'post' do %>
+        <%= fa_icon('chevron-up', class: vote_true(comment) ? 'voted' : 'vote_buttons') %>
+      <% end %>
+        <br/>
+          <%= total_votes(comment) %>
+        <br/>
+      <%= link_to votes_path(vote: false, type: 'Comment', id:comment.id), class: 'vote_link', method: 'post' do %>
+        <%= fa_icon('chevron-down', class: vote_false(comment) ? 'voted' : 'vote_buttons') %>
+      <% end %>
+    </div><!-- end div.span0 -->
+  <% else %>
+    <div class="span0 text-center">
+       <h4> <%= total_votes(comment) %> </h4>
+    </div>
   <% end %>
-  <p><%= comment.body %></p>
-  <footer>
-    By <%= comment.creator.username %> at <%= comment.created_at %>
-  </footer>
-</blockquote>
 
+  <div class="span8" >
+    <blockquote>
+      <% if indicate_post == true %>
+        <h4>Commented on <%= link_to "#{comment.post.title}", post_path(comment.post)%></h3>
+      <% end %>
+      <p><%= comment.body %></p>
+      <footer>
+        By <%= comment.creator.username %> at <%= comment.created_at %>
+      </footer>
+    </blockquote>
+  </div>
+</div>

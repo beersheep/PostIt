@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
   before_action :find_vote, only: [:change_vote, :destroy, :has_voted?]
+  before_action :require_user, only: [:create]
 
   def create
 
