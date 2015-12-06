@@ -4,16 +4,12 @@ class VotesController < ApplicationController
 
   def create
 
-    @post = Post.find(params[:id])
-    @comment = Comment.find(params[:id])
-
     if has_voted?
       @vote.vote.to_s == params[:vote] ? self.destroy : self.change_vote
     else
       
       @vote = Vote.create(vote: params[:vote], voteable_type: params[:type], voteable_id: params[:id], user: current_user)
       if @vote.valid?
-
         respond_to do |format|
           format.html {redirect_to :back, notice: "Vote Competed!"}
           format.js 
@@ -30,8 +26,10 @@ class VotesController < ApplicationController
     @vote.vote = !@vote.vote
 
     if @vote.update(vote: params[:vote])
-      flash[:success] = "change your vote"
-      redirect_to :back
+      respond_to do |format|
+        format.html {redirect_to :back, success: "You change your mind!"}
+        format.js 
+      end
     else 
       flash['error'] = "Vote failed! Please try again"
       redirect_to :back
@@ -39,9 +37,13 @@ class VotesController < ApplicationController
   end
 
   def destroy 
-    @vote.destroy
-    flash[:success] = "vote uncount"
-    redirect_to :back
+    if @vote.destroy
+      respond_to do |format|
+        format.html {redirect_to :back, success: "You cancel the vote!"}
+        format.js 
+      end
+    end
+
   end
 
   def has_voted? 

@@ -1,2 +1,9 @@
-
+<% @post = Post.find(params[:id]) if params[:type] == "Post"  %>
+<% if @post %>
 $('#post_vote_<%= params[:id] %>').html('<%= total_votes(@post) %>');
+<% end %>
+
+<% @comment = Comment.find(params[:id]) if params[:type] == "Comment" %>
+<% if @comment %>
+$('#comment_vote_<%= params[:id] %>').html('<%= total_votes(@comment) %>');
+<% end %>
