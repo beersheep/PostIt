@@ -2,10 +2,9 @@ class CommentsController < ApplicationController
   before_action :require_user
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     @comment = @post.comments.new(params.require(:comment).permit!)
-    
-    random_user = User.all.shuffle.pop  
+  
     @comment.creator = current_user
 
     if @comment.save 
