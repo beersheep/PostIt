@@ -1,11 +1,11 @@
 <% if logged_in? %>
   <div class="well span0 text-center">
     <%= link_to votes_path(vote: true, type: 'Post', id:post.id), remote: true,  method: 'post', class: 'vote_link' do %>
-      <%= fa_icon('chevron-up', class: vote_true(post) ? 'voted' : 'vote_buttons') %>
+      <%= fa_icon('chevron-up', class: vote_true(post) ? 'voted' : '') %>
     <% end %>
       <h4 id= <%= "post_vote_#{post.id}" %> ><%= total_votes(post) %></h4>
     <%= link_to votes_path(vote: false, type: 'Post', id:post.id), remote: true, method: 'post', class: 'vote_link' do %>
-      <%= fa_icon('chevron-down', class: vote_false(post) ? 'voted' : 'vote_buttons') %>
+      <%= fa_icon('chevron-down', class: vote_false(post) ? 'voted' : '') %>
     <% end %>
   </div>
 <% else %>
