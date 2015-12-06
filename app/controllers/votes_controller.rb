@@ -4,15 +4,21 @@ class VotesController < ApplicationController
 
   def create
 
-    if has_voted?
+    @post = Post.find(params[:id])
+    @comment = Comment.find(params[:id])
 
+    if has_voted?
       @vote.vote.to_s == params[:vote] ? self.destroy : self.change_vote
     else
       
       @vote = Vote.create(vote: params[:vote], voteable_type: params[:type], voteable_id: params[:id], user: current_user)
       if @vote.valid?
-        flash['notice'] = "Vote completed!" 
-        redirect_to :back
+
+        respond_to do |format|
+          format.html {redirect_to :back, notice: "Vote Competed!"}
+          format.js 
+        end
+
       else
         flash['error'] = "Vote failed! Please try again"
         redirect_to :back

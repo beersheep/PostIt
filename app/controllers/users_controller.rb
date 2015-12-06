@@ -14,11 +14,17 @@ class UsersController < ApplicationController
 
   def update
 
-    if @user.update(params.require(:user).permit(:username, :password, :password_confirmation))
-      flash['notice'] = "Profile updated!"
-      redirect_to user_path(@user)
-    else
+    if params[:user][:password] != params[:user][:password_confirmation]
+      flash['error'] = "Password confirmation does not match"
       render :new
+    else
+
+      if @user.update(params.require(:user).permit(:username, :password, :password_confirmation))
+        flash['notice'] = "Profile updated!"
+        redirect_to user_path(@user)
+      else
+        render :new
+      end
     end
   end
 
