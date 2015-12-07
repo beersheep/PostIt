@@ -8,7 +8,7 @@ class VotesController < ApplicationController
       @vote.vote.to_s == params[:vote] ? self.destroy : self.change_vote
     else
       
-      @vote = Vote.create(vote: params[:vote], voteable_type: params[:type], voteable_id: params[:id], user: current_user)
+      @vote = Vote.create(vote: params[:vote], voteable_type: params[:type], voteable_id: find_post_id, user: current_user)
       if @vote.valid?
         respond_to do |format|
           format.html {redirect_to :back, notice: "Vote Competed!"}
@@ -47,13 +47,18 @@ class VotesController < ApplicationController
   end
 
   def has_voted? 
-  @vote = Vote.find_by(voteable_type: params[:type], voteable_id: params[:id], user: current_user)
+  @vote = Vote.find_by(voteable_type: params[:type], voteable_id: find_post_id, user: current_user)
   end
 
   private
 
+  def find_post_id
+    @post = Post.find_by(slug: params[:slug])
+    @post.id
+  end
+
   def find_vote
-    @vote = Vote.find_by(voteable_type: params[:type], voteable_id: params[:id], user: current_user)
+    @vote = Vote.find_by(voteable_type: params[:type], voteable_id: find_post_id, user: current_user)
   end
 
 end

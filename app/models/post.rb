@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   validates :categories, presence: true
 
   def save_slug
-    self.slug = self.title.gsub(/\W/, "-")
+    self.slug = self.title.rstrip.gsub(/\W/, "-").downcase
   end
 
   def to_param
