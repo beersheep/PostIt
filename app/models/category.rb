@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   def save_slug
-    self.slug = self.name.gsub(/\W/, "-")
+    self.slug = self.name.rstrip.gsub(/\W/, "-").downcase
   end
 
   def to_param

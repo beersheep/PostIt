@@ -1,6 +1,7 @@
 <% indicate_post ||= false %>
 
 <div class="row">
+  
   <% if logged_in? %>
     <div class="span0 text-center">
       <%= link_to votes_path(vote: true, type: 'Comment', id:comment.id), class: 'vote_link', remote: true, method: 'post' do %>

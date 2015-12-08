@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   def save_slug
-    self.slug = self.username.gsub(/\W/, "-")
+    self.slug = self.username.rstrip.gsub(/\W/, "-").downcase
   end
 
   def to_param
