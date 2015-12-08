@@ -4,6 +4,6 @@ $('#post_vote_<%= params[:slug] %>').html('<%= total_votes(@post) %>');
 <% end %>
 
 <% if params[:type] == "Comment" %>
-<% @comment = Comment.find(slug: params[:slug])%>
-$('#comment_vote_<%= params[:slug] %>').html('<%= total_votes(@comment) %>');
+<% @comment = Comment.find(params[:id])%>
+$('#comment_vote_<%= params[:id] %>').html('<%= total_votes(@comment) %>');
 <% end %>
