@@ -1,9 +1,12 @@
 <% if params[:type] == "Post"  %>
 <% @post = Post.find_by(slug: params[:slug]) %>
 $('#post_vote_<%= params[:slug] %>').html('<%= total_votes(@post) %>');
+$('.post_section_<%= params[:slug] %>').html('<%= j render @post %>')
 <% end %>
 
 <% if params[:type] == "Comment" %>
 <% @comment = Comment.find(params[:id])%>
 $('#comment_vote_<%= params[:id] %>').html('<%= total_votes(@comment) %>');
+$('.comment_section_<%= params[:id] %>').html('<%= j render @comment %>')
 <% end %>
+

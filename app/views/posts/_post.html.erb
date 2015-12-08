@@ -1,4 +1,5 @@
 <% if logged_in? %>
+<div class=<%= "post_section_#{post.slug}" %>>
   <div class="well span0 text-center vote-well">
     <%= link_to votes_path(vote: true, type: 'Post', slug:post.slug), remote: true,  method: 'post', class: 'vote_link' do %>
       <%= fa_icon('chevron-up', class: vote_true(post) ? "voted #{post.id}_arrow" : "#{post.id}_arrow") %>
@@ -25,5 +26,6 @@
   <small>
     <span><%= link_to "#{post.comments.size} comments", post_path(post) %></span>
   </small>
+</div>
 </div>
 
