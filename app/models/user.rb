@@ -9,8 +9,20 @@ class User < ActiveRecord::Base
 
   has_secure_password validations: false
 
+  def generate_slug
+    self.slug = self.username.strip.gsub(/\W/, "-").downcase
+  end
+
   def save_slug
-    self.slug = self.username.rstrip.gsub(/\W/, "-").downcase
+    generate_slug
+
+    if !User.find_by(slug: self.slug).nil?
+      if self.slug.match(/-\d*$/) == nil 
+        self.slug = self.slug + "-01"
+      else
+        self.slug.sub!(/-\d*$/) {|n| n.succ}
+      end
+    end
   end
 
   def to_param

@@ -10,8 +10,20 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true 
   validates :categories, presence: true
 
+  def generate_slug
+    self.slug = self.title.strip.gsub(/\W/, "-").downcase
+  end
+
   def save_slug
-    self.slug = self.title.rstrip.gsub(/\W/, "-").downcase
+    generate_slug
+
+    if !Post.find_by(slug: self.slug).nil?
+      if self.slug.match(/-\d*$/) == nil 
+        self.slug = self.slug + "-01"
+      else
+        self.slug.sub!(/-\d*$/) {|n| n.succ}
+      end
+    end
   end
 
   def to_param
