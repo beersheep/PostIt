@@ -7,14 +7,14 @@
       <%= link_to votes_path(vote: true, type: 'Comment', id:comment.id), class: 'vote_link', remote: true, method: 'post' do %>
         <%= fa_icon('chevron-up', class: vote_true(comment) ? 'voted' : 'vote_buttons') %>
       <% end %>
-          <h4 id="comment_vote_<%= comment.id %>"><%= total_votes(comment) %></h4>
+          <h4 id="comment_vote_<%= comment.id %>"><%= comment.total_votes %></h4>
       <%= link_to votes_path(vote: false, type: 'Comment', id:comment.id), class: 'vote_link', remote: true,  method: 'post' do %>
         <%= fa_icon('chevron-down', class: vote_false(comment) ? 'voted' : 'vote_buttons') %>
       <% end %>
     </div><!-- end div.span0 -->
   <% else %>
     <div class="span0 text-center">
-       <h4> <%= total_votes(comment) %> </h4>
+       <h4> <%= comment.total_votes %> </h4>
     </div>
   <% end %>
 

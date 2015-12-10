@@ -4,14 +4,14 @@
     <%= link_to votes_path(vote: true, type: 'Post', slug:post.slug), remote: true,  method: 'post', class: 'vote_link' do %>
       <%= fa_icon('chevron-up', class: vote_true(post) ? "voted #{post.id}_arrow" : "#{post.id}_arrow") %>
     <% end %>
-      <h4 id= <%= "post_vote_#{post.slug}" %> ><%= total_votes(post) %></h4>
+      <h4 id= <%= "post_vote_#{post.slug}" %> ><%= post.total_votes %></h4>
     <%= link_to votes_path(vote: false, type: 'Post', slug:post.slug), remote: true, method: 'post', class: 'vote_link' do %>
       <%= fa_icon('chevron-down', class: vote_false(post) ? "voted #{post.id}_arrow" : "#{post.id}_arrow") %>
     <% end %>
   </div>
 <% else %>
   <div class="well span0 text-center">
-    <h4 <%= "post_vote_#{post.slug}" %>><%= total_votes(post) %></h4>
+    <h4 <%= "post_vote_#{post.slug}" %>><%= post.total_votes %></h4>
   </div>
 <%end %>
 
