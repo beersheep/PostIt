@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController 
-  before_action :require_user, only: [:create, :new]
+  before_action :admin?, only: [:create, :new]
 
   def show
    
@@ -27,5 +27,5 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-  
+
 end
