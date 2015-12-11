@@ -4,7 +4,6 @@ module Slugging
   included do 
     before_save :save_slug
     class_attribute :slug_column
-    
   end
 
   def generate_slug

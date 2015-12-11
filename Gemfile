@@ -14,6 +14,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem "font-awesome-rails"
+gem 'roy_voting_gem', '= 0.0.4', path: '/Users/RoyHuang/Desktop/tealeaf/voteable_gem'
 
 
 group :doc do
