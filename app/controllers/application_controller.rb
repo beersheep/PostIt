@@ -22,9 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    if current_user && current_user.role == 1  
-      true
-    else
+    true if current_user && current_user.role == 1  
+  end
+
+  def require_admin
+    if !current_user || current_user.role != 1
       access_deny("You are not allowed to do this!")
       redirect_to root_path
     end

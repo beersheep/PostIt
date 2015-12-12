@@ -1,4 +1,5 @@
 <% if logged_in? %>
+
 <div class=<%= "post_section_#{post.slug}" %>>
   <div class="well span0 text-center vote-well">
     <%= link_to votes_path(vote: true, type: 'Post', slug:post.slug), remote: true,  method: 'post', class: 'vote_link' do %>
@@ -13,19 +14,18 @@
   <div class="well span0 text-center">
     <h4 <%= "post_vote_#{post.slug}" %>><%= post.total_votes %></h4>
   </div>
-<%end %>
+<% end %>
 
-<div class="well span10">
-<%= render post.categories %>
-  <h4><%= link_to post.title, fix_url(post.url) %></h4>    
-   <p><%= post.description %></p>
-    <p>
-      <span class="quiet">Posted by <%= post.creator.username %> </span>
-      <small> at <%= post.created_at %></small>
-    </p>
-  <small>
-    <span><%= link_to "#{post.comments.size} comments", post_path(post) %></span>
-  </small>
+  <div class="well span10">
+  <%= render post.categories %>
+    <h4><%= link_to post.title, fix_url(post.url) %></h4>    
+     <p><%= post.description %></p>
+      <p>
+        <span class="quiet">Posted by <%= post.creator.username %> </span>
+        <small> at <%= display_datetime(post.created_at) %></small>
+      </p>
+    <small>
+      <span><%= link_to "#{post.comments.size} comments", post_path(post) %></span>
+    </small>
+  </div>  
 </div>
-</div>
-
