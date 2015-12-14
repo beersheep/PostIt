@@ -5,4 +5,8 @@
 
 <%= render @posts %>
 
+<% (1..@pages).each do |n| %>
+  <%= link_to "Page #{n}", page_path(n) %>
+<% end %>
+
 
