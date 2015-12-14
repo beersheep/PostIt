@@ -13,4 +13,5 @@ class Post < ActiveRecord::Base
 
   slugging_column :title
 
+  PER_PAGE = 4
 end

@@ -2,9 +2,10 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update]
   before_action :require_user, except: [:index, :show]
   before_action :editable?, only:[:edit, :update]
+  
 
   def index
-    @posts = Post.all.includes(:comments, :creator, :categories, :votes).order(id: :desc)
+    @posts = Post.all.includes(:comments, :creator, :categories, :votes).order(id: :desc).limit(Post::PER_PAGE)
   end
 
   def show
